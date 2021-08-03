@@ -1,27 +1,16 @@
-import React from  'react';
+import React from 'react';
 
-class weather extends React.Component{
-    constructor (props) {
-        super(props);
-        this.state = {
-            timeDate:'',
-            description:''
-        }
-    }
-
-    render() {
-
-        return(
-            <>
-
-          {/* <div >handleClick={this.getWeatherInfo}</div> */}
-         <p>{this.state.timeDate}</p>
-        <p>{this.state.description}</p>
-         
-            </>
-        )
-    }
-
+class Weather extends React.Component {
+  render() {
+    return(
+      this.props.weather.map((day, index) => (
+        <div key={index}>
+          <p>day: {day.date}</p>
+          <p>description: {day.description}</p>
+        </div>
+      ))
+    )
+  }
 }
 
-export default weather;
+export default Weather;

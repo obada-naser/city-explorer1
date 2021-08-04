@@ -7,7 +7,7 @@ class Map extends React.Component{
     render(){
         return(
             <>
-             <Image  src={this.props.imgaeurl} alt={this.props.city} title={this.props.city}   />
+             <Image src={this.props.imgaeurl} alt={this.props.city} title={this.props.city}   />
             </>
         )
     }

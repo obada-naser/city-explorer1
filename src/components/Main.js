@@ -14,12 +14,12 @@ class Main extends React.Component {
             showMap: false,
           
             lat: '',
-            loc: '',
-            longitude: '',
+            location: '',
+            lon: '',
            
             weather: [],
             errorMessage: '',
-            searchQuery: '',
+            searchQuery: ''
         }
     }
 
@@ -30,7 +30,7 @@ class Main extends React.Component {
     }
 
     showLocation = async () => {
-        const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_MAP_KEY}&q=${this.state.searchQuery}&format=json`;
+        const url = `https://us1.locationiq.com/v1/search.php?key=pk.5c33925fee3b7f3c0a9ad67546f754a2&q=${this.state.searchQuery}&format=json`;
         let location;
 
         try {
@@ -42,7 +42,7 @@ class Main extends React.Component {
                 showMap: true,
                 displayError: false
             });
-            this.displayWeather(location.data[0].lat, location.data[0].lon)
+            this.showWeather(location.data[0].lat, location.data[0].lon)
 
         } catch (error) {
             
@@ -56,7 +56,7 @@ class Main extends React.Component {
 
     showWeather = async (lat, lon) => {
         try {
-            const weather = await axios.get(`http://localhost:3001/weather?searchQuery=${this.state.searchQuery}&lon=${this.state.lon}&lat=${this.state.lat}`);
+            const weather = await axios.get(`http://localhost:3030/weather?searchQuery=${this.state.searchQuery}&lon=${this.state.lon}&lat=${this.state.lat}`);
             console.log(weather);
             this.setState({
                 weather: weather.data
@@ -96,7 +96,7 @@ class Main extends React.Component {
                         <Row>
                             <Col>
                                 <Map
-                                    imgaeurl={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_MAP_KEY}&center=${this.state.lat},${this.state.lon}&format=jpg`}
+                                    imgaeurl={`https://maps.locationiq.com/v3/staticmap?key=pk.5c33925fee3b7f3c0a9ad67546f754a2&center=${this.state.lat},${this.state.lon}&format=jpg`}
                                     city={this.state.location}
                                 />
                             </Col>

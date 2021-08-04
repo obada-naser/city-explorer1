@@ -4,7 +4,7 @@ class Footer extends React.Component {
   render() {
     return(
       <>
-        <h2>copyRight by &copy;</h2>
+        <h2>copyRight &copy; by obada hemadenh </h2>
        
       </>
     )

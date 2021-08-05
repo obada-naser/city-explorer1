@@ -62,7 +62,7 @@ class Main extends React.Component {
 
     showWeather = async (lat, lon) => {
         try {
-            const weather = await axios.get(`http://localhost:3032/weather-bit?searchQuery=${this.state.searchQuery}&lon=${this.state.lon}&lat=${this.state.lat}`);
+            const weather = await axios.get(`http://localhost:3033/weather-bit?searchQuery=${this.state.searchQuery}&lon=${this.state.lon}&lat=${this.state.lat}`);
             console.log(weather);
             this.setState({
                 weather: weather.data
@@ -77,7 +77,7 @@ class Main extends React.Component {
     }
     showMovie=async(searchQuery)=>{
         try{
-            const movie=await axios.get(`http://localhost:3032/movie?searchQuery=${searchQuery}`);
+            const movie=await axios.get(`http://localhost:3033/movie?searchQuery=${searchQuery}`);
             this.setState({
                 movie:movie.data
             })

@@ -21,7 +21,9 @@ class Main extends React.Component {
             weather: [],
             errorMessage: '',  
             searchQuery: '',
-            movie:[]
+            movie:[],
+          
+
         }
     }
 
@@ -41,10 +43,12 @@ class Main extends React.Component {
                 location: location.data[0].display_name,
                 lat: location.data[0].lat,
                 lon: location.data[0].lon,
+                
                 showMap: true,
                 displayError: false
             });
-            this.showWeather(location.data[0].lat, location.data[0].lon)
+            this.showWeather(location.data[0].lat, location.data[0].lon);
+            this.showMovie(this.state.searchQuery);
 
         } catch (error) {
             
@@ -58,7 +62,7 @@ class Main extends React.Component {
 
     showWeather = async (lat, lon) => {
         try {
-            const weather = await axios.get(`http://localhost:3030/weather-bit?searchQuery=${this.state.searchQuery}&lon=${this.state.lon}&lat=${this.state.lat}`);
+            const weather = await axios.get(`http://localhost:3032/weather-bit?searchQuery=${this.state.searchQuery}&lon=${this.state.lon}&lat=${this.state.lat}`);
             console.log(weather);
             this.setState({
                 weather: weather.data
@@ -73,11 +77,11 @@ class Main extends React.Component {
     }
     showMovie=async(searchQuery)=>{
         try{
-            const movie=await axios.get(`http://localhost:3030/movie?searchQuery=${this.state.searchQuery}`);
+            const movie=await axios.get(`http://localhost:3032/movie?searchQuery=${searchQuery}`);
             this.setState({
                 movie:movie.data
             })
-        
+            console.log(movie);
         }
         catch (error) {
             this.setState({

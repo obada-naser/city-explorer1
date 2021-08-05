@@ -5,6 +5,7 @@ import axios from 'axios';
 import LatLon from './LatLon';
 import Map from './Map';
 import Weather from './Weather';
+import Movie from './Movie';
 
 class Main extends React.Component {
     constructor(props) {
@@ -18,8 +19,9 @@ class Main extends React.Component {
             lon: '',
            
             weather: [],
-            errorMessage: '',
-            searchQuery: ''
+            errorMessage: '',  
+            searchQuery: '',
+            movie:[]
         }
     }
 
@@ -56,7 +58,7 @@ class Main extends React.Component {
 
     showWeather = async (lat, lon) => {
         try {
-            const weather = await axios.get(`http://localhost:3030/weather?searchQuery=${this.state.searchQuery}&lon=${this.state.lon}&lat=${this.state.lat}`);
+            const weather = await axios.get(`http://localhost:3030/weather-bit?searchQuery=${this.state.searchQuery}&lon=${this.state.lon}&lat=${this.state.lat}`);
             console.log(weather);
             this.setState({
                 weather: weather.data
@@ -69,6 +71,24 @@ class Main extends React.Component {
             })
         }
     }
+    showMovie=async(searchQuery)=>{
+        try{
+            const movie=await axios.get(`http://localhost:3030/movie?searchQuery=${this.state.searchQuery}`);
+            this.setState({
+                movie:movie.data
+            })
+        
+        }
+        catch (error) {
+            this.setState({
+                showMap: false,
+                displayError: true,
+                errorMessage: "ERROR"
+            })
+        }
+
+    }
+
 
     render() {
         return (
@@ -106,6 +126,15 @@ class Main extends React.Component {
                                 <Weather
                                     weather={this.state.weather}
                                 />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Movie
+                                    movie={this.state.movie}
+
+                                    />
+                            
                             </Col>
                         </Row>
                     </>

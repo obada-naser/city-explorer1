@@ -10,7 +10,8 @@ render(){
           <p>overview:{item.overview}</p>
           <p>vote_average:{item.vote_average}</p>
           <p>vote_count:{item.vote_count}</p>
-          <p>poster_path:{item.poster_path}</p>
+          <p>poster_path:</p>
+          <img src={item.poster_path} alt='img'/>
           <p>popularity:{item.popularity}</p>
           <p>release_date:{item.release_date}</p>
         </>

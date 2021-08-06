@@ -2,12 +2,11 @@ import React from 'react';
 
 class Footer extends React.Component {
   render() {
-    return(
+    return (
       <>
         <h2>copyRight &copy; by obada hemadenh </h2>
-       
       </>
-    )
+    );
   }
 }
 

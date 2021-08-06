@@ -34,7 +34,7 @@ class Main extends React.Component {
     }
 
     showLocation = async () => {
-        const url = `https://us1.locationiq.com/v1/search.php?key=pk.5c33925fee3b7f3c0a9ad67546f754a2&q=${this.state.searchQuery}&format=json`;
+        const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_MAP_KEY}&q=${this.state.searchQuery}&format=json`;
         let location;
 
         try {
@@ -62,7 +62,7 @@ class Main extends React.Component {
 
     showWeather = async (lat, lon) => {
         try {
-            const weather = await axios.get(`http://localhost:3033/weather-bit?searchQuery=${this.state.searchQuery}&lon=${this.state.lon}&lat=${this.state.lat}`);
+            const weather = await axios.get(`${process.env.REACT_APP_SERVER_URL}/weather-bit?searchQuery=${this.state.searchQuery}&lon=${this.state.lon}&lat=${this.state.lat}`);
             console.log(weather);
             this.setState({
                 weather: weather.data
@@ -77,7 +77,7 @@ class Main extends React.Component {
     }
     showMovie=async(searchQuery)=>{
         try{
-            const movie=await axios.get(`http://localhost:3033/movie?searchQuery=${searchQuery}`);
+            const movie=await axios.get(`${process.env.REACT_APP_SERVER_URL}/movie?searchQuery=${searchQuery}`);
             this.setState({
                 movie:movie.data
             })
